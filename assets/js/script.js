@@ -1,7 +1,7 @@
 // Get the input fields
-const currencyCodeInput = document.getElementById("currencyCode");
+const currencyCodeInput = document.getElementById("from-currency");
 const amountInput = document.getElementById("amount");
-const conversionCodeInput = document.getElementById("conversionCode");
+const conversionCodeInput = document.getElementById("to-currency");
 
 // Add a submit event listener to the form
 document.querySelector("form").addEventListener("submit", (event) => {
