@@ -9,36 +9,39 @@ document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
 
   // Get the input field values
-  const currencyCode = currencyCodeInput.value.toUpperCase();
+  const currencyCode = currencyCodeInput.value.toLowerCase();
   const amount = parseFloat(amountInput.value);
-  const conversionCode = conversionCodeInput.value.toUpperCase();
+  const conversionCode = conversionCodeInput.value.toLowerCase();
 
   // Fetch the exchange rates for the currencyCode from the API
-  fetch(`https://restcountries.com/v3.1/currency/${currencyCode}`)
+  fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currencyCode}/${conversionCode}.json`)
     .then((response) => response.json())
     .then((data) => {
-      // Extract the exchange rate from the API response
-      const exchangeRate = data[0].currency[currencyCode].exchangeRate;
+      const convertedAmount = amount * data[conversionCode];
+        const resultElement = document.getElementById("result");
+        resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount.toFixed(2)} ${conversionCode}`;
+    //   // Extract the exchange rate from the API response
+    //   const exchangeRate = data[0].currency[currencyCode].exchangeRate;
 
-      // Fetch the exchange rates for the conversionCode from the API
-      fetch(`https://restcountries.com/v3.1/currency/${conversionCode}`)
-        .then((response) => response.json())
-        .then((data) => {
-          // Extract the exchange rate from the API response
-          const conversionRate = data[0].currency[conversionCode].exchangeRate;
+    //   // Fetch the exchange rates for the conversionCode from the API
+    //   fetch(`https://restcountries.com/v3.1/currency/${conversionCode}`)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       // Extract the exchange rate from the API response
+    //       const conversionRate = data[0].currency[conversionCode].exchangeRate;
 
-          // Calculate the converted amount using the exchange rates
-          const convertedAmount = (amount / exchangeRate) * conversionRate;
+    //       // Calculate the converted amount using the exchange rates
+    //       const convertedAmount = (amount / exchangeRate) * conversionRate;
 
-          // Display the converted amount
-          const resultElement = document.getElementById("result");
-          resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount.toFixed(
-            2
-          )} ${conversionCode}`;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    //       // Display the converted amount
+    //       const resultElement = document.getElementById("result");
+    //       resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount.toFixed(
+    //         2
+    //       )} ${conversionCode}`;
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     });
     })
     .catch((error) => {
       console.error(error);
