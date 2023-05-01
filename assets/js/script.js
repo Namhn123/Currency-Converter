@@ -1,34 +1,46 @@
-// Variables to store the API endpoints and the exchange rates
-const countriesEndpoint = 'https://restcountries.com/v2/all';
-const currencyEndpoint = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/';
+// Get the input fields
+const currencyCodeInput = document.getElementById("currencyCode");
+const amountInput = document.getElementById("amount");
+const conversionCodeInput = document.getElementById("conversionCode");
 
-let exchangeRates = {};
+// Add a submit event listener to the form
+document.querySelector("form").addEventListener("submit", (event) => {
+  // Prevent the default form submission behavior
+  event.preventDefault();
 
-// Fetch to get the exchange rates from the API and store them in the exchangeRates object
-fetch(currencyEndpoint)
-  .then(response => response.json())
-  .then(data => exchangeRates = data);
+  // Get the input field values
+  const currencyCode = currencyCodeInput.value.toUpperCase();
+  const amount = parseFloat(amountInput.value);
+  const conversionCode = conversionCodeInput.value.toUpperCase();
 
-// Fetch to get the country data from the API and store it in the countries object
-let countries = [];
-fetch(countriesEndpoint)
-  .then(response => response.json())
-  .then(data => {
-    // Process the data to create an object with the country code and currency code for each country
-    countries = data.map(country => ({
-      countryCode: country.alpha2Code,
-      currencyCode: country.currencies[0].code
-    }));
-  });
+  // Fetch the exchange rates for the currencyCode from the API
+  fetch(`https://restcountries.com/v3.1/currency/${currencyCode}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // Extract the exchange rate from the API response
+      const exchangeRate = data[0].currency[currencyCode].exchangeRate;
 
-  // Function to convert between two currencies
-function convertCurrency(amount, fromCurrency, toCurrency) {
-    // Convert the amount to USD using the exchange rate for the fromCurrency
-    const usdAmount = amount / exchangeRates[fromCurrency];
-  
-    // Then, convert the USD amount to the toCurrency using the exchange rate for the toCurrency
-    const convertedAmount = usdAmount * exchangeRates[toCurrency];
-  
-    return convertedAmount;
-  }
-  
+      // Fetch the exchange rates for the conversionCode from the API
+      fetch(`https://restcountries.com/v3.1/currency/${conversionCode}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Extract the exchange rate from the API response
+          const conversionRate = data[0].currency[conversionCode].exchangeRate;
+
+          // Calculate the converted amount using the exchange rates
+          const convertedAmount = (amount / exchangeRate) * conversionRate;
+
+          // Display the converted amount
+          const resultElement = document.getElementById("result");
+          resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount.toFixed(
+            2
+          )} ${conversionCode}`;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
