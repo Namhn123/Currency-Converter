@@ -18,30 +18,14 @@ document.querySelector("form").addEventListener("submit", (event) => {
     .then((response) => response.json())
     .then((data) => {
       const convertedAmount = amount * data[conversionCode];
-        const resultElement = document.getElementById("result");
-        resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount.toFixed(2)} ${conversionCode}`;
-    //   // Extract the exchange rate from the API response
-    //   const exchangeRate = data[0].currency[currencyCode].exchangeRate;
+      const resultElement = document.getElementById("result");
+      resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount} ${conversionCode}`;
 
-    //   // Fetch the exchange rates for the conversionCode from the API
-    //   fetch(`https://restcountries.com/v3.1/currency/${conversionCode}`)
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       // Extract the exchange rate from the API response
-    //       const conversionRate = data[0].currency[conversionCode].exchangeRate;
-
-    //       // Calculate the converted amount using the exchange rates
-    //       const convertedAmount = (amount / exchangeRate) * conversionRate;
-
-    //       // Display the converted amount
-    //       const resultElement = document.getElementById("result");
-    //       resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount.toFixed(
-    //         2
-    //       )} ${conversionCode}`;
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
+      // fetch(`https://restcountries.com/v3.1/currency/${currencyCode}`)
+      //   .then((response) => response.json())
+      //   .then((data) => {
+          
+      //   })
     })
     .catch((error) => {
       console.error(error);
