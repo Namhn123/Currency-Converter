@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+
   </head>
   <body>
     <header>
@@ -29,7 +31,6 @@
           <option value="BDT">Bangladeshi Taka</option>
           <option value="BBD">Barbadian Dollar</option>
           <option value="BYR">Belarusian Ruble</option>
-          <option value="BEF">Belgian Franc</option>
           <option value="BZD">Belize Dollar</option>
           <option value="BMD">Bermudan Dollar</option>
           <option value="BTN">Bhutanese Ngultrum</option>
@@ -63,17 +64,14 @@
           <option value="XCD">East Caribbean Dollar</option>
           <option value="EGP">Egyptian Pound</option>
           <option value="ERN">Eritrean Nakfa</option>
-          <option value="EEK">Estonian Kroon</option>
           <option value="ETB">Ethiopian Birr</option>
           <option value="EUR">Euro</option>
           <option value="FKP">Falkland Islands Pound</option>
           <option value="FJD">Fijian Dollar</option>
           <option value="GMD">Gambian Dalasi</option>
           <option value="GEL">Georgian Lari</option>
-          <option value="DEM">German Mark</option>
           <option value="GHS">Ghanaian Cedi</option>
           <option value="GIP">Gibraltar Pound</option>
-          <option value="GRD">Greek Drachma</option>
           <option value="GTQ">Guatemalan Quetzal</option>
           <option value="GNF">Guinean Franc</option>
           <option value="GYD">Guyanaese Dollar</option>
@@ -87,7 +85,6 @@
           <option value="IRR">Iranian Rial</option>
           <option value="IQD">Iraqi Dinar</option>
           <option value="ILS">Israeli New Sheqel</option>
-          <option value="ITL">Italian Lira</option>
           <option value="JMD">Jamaican Dollar</option>
           <option value="JPY">Japanese Yen</option>
           <option value="JOD">Jordanian Dinar</option>
@@ -114,7 +111,6 @@
           <option value="MDL">Moldovan Leu</option>
           <option value="MNT">Mongolian Tugrik</option>
           <option value="MAD">Moroccan Dirham</option>
-          <option value="MZM">Mozambican Metical</option>
           <option value="MMK">Myanmar Kyat</option>
           <option value="NAD">Namibian Dollar</option>
           <option value="NPR">Nepalese Rupee</option>
@@ -177,9 +173,9 @@
           <option value="VND">Vietnamese Dong</option>
           <option value="YER">Yemeni Rial</option>
           <option value="ZMK">Zambian Kwacha</option>
-      </select>
+        </select>
 
-      <select class="column has-background-white-ter is-size-6 has-text-centered pl-3 has-text-weight-semibold" id="to-currency">
+      <select id="to-currency">
         <option>select currency</option>
         <option value="AFN">Afghan Afghani</option>
         <option value="ALL">Albanian Lek</option>
@@ -344,8 +340,7 @@
         <option value="YER">Yemeni Rial</option>
         <option value="ZMK">Zambian Kwacha</option>
     </select>
-    </form>
-      <form> 
+
         <div class="field">
           <label class="label" for="amount">Amount:</label>
           <div class="control">
@@ -362,6 +357,17 @@
 
       <div class="result">
         <p class="subtitle is-5 has-text-weight-semibold">Result: <span id="result"></span></p>
+      </div>
+      <form id="countryDisplay">
+        <select id="from-countries">
+        </select>
+        <select id="to-countries">
+        </select>
+      </form>
+      <div class="field">
+        <div class="control">
+          <button class="button is-info is-outlined" type="submit">Display Countries</button>
+        </div>
       </div>
     </main>
 
