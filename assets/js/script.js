@@ -23,13 +23,13 @@ document.querySelector("form").addEventListener("submit", (event) => {
       const resultElement = document.getElementById("result");
       resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount} ${conversionCode}`;
       //gets the country data of the first currency
-      fetch(`https://restcountries.com/v3.1/currency/${currencyCode}?fields=name,capital,currencies,flags`)
+      fetch(`https://restcountries.com/v3.1/currency/${currencyCode}?fields=name`)
         .then((response) => response.json())
         .then((data) => {
           for(var i=0; i<data.length; i++) {//if there are more than 1 country associated with the currency, display all in dropdown list
             $("#from-countries").append($('<option></option>').val(i).html(data[i].name.common));
           }
-          fetch(`https://restcountries.com/v3.1/currency/${conversionCode}?fields=name,capital,currencies,flags`)
+          fetch(`https://restcountries.com/v3.1/currency/${conversionCode}?fields=name`)
           .then((response) => response.json())
           .then((data) => {
             for(var i=0; i<data.length; i++) {
@@ -42,4 +42,11 @@ document.querySelector("form").addEventListener("submit", (event) => {
     .catch((error) => {
       console.error(error);
     });
+});
+
+document.querySelector("#countryDisplay").addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log(currencyCodeInput.value.toLowerCase());
+  console.log(conversionCodeInput.value.toLowerCase());
+
 });
