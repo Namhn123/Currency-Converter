@@ -11,9 +11,9 @@
     <header>
         <h1 class="introduction has-background-link-light is-size-2 has-text-centered has-text-weight-bold">Currency Converter</h1> 
   </header>
-    <main class="container">
-      <form>
-        <select id="from-currency">
+    <main class="container mt-3 px-1">
+      <form class="columns">
+        <select class="column has-background-white-ter is-size-6 has-text-centered pr-3 has-text-weight-semibold" id="from-currency">
           <option>select currency</option>
           <option value="AFN">Afghan Afghani</option>
           <option value="ALL">Albanian Lek</option>
@@ -179,7 +179,7 @@
           <option value="ZMK">Zambian Kwacha</option>
       </select>
 
-      <select id="to-currency">
+      <select class="column has-background-white-ter is-size-6 has-text-centered pl-3 has-text-weight-semibold" id="to-currency">
         <option>select currency</option>
         <option value="AFN">Afghan Afghani</option>
         <option value="ALL">Albanian Lek</option>
@@ -344,7 +344,8 @@
         <option value="YER">Yemeni Rial</option>
         <option value="ZMK">Zambian Kwacha</option>
     </select>
-
+    </form>
+      <form> 
         <div class="field">
           <label class="label" for="amount">Amount:</label>
           <div class="control">
