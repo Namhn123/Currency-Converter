@@ -13,9 +13,9 @@
     <header>
         <h1 class="introduction has-background-link-light is-size-2 has-text-centered has-text-weight-bold">Currency Converter</h1> 
   </header>
-    <main class="container">
-      <form>
-        <select id="from-currency">
+    <main class="container mt-3 px-1">
+      <form class="columns">
+        <select class="input" id="from-currency">
           <option>select currency</option>
           <option value="AFN">AFN - Afghan Afghani</option>
           <option value="ALL">ALL - Albanian Lek</option>
@@ -173,7 +173,7 @@
           <option value="ZMK">ZMK - Zambian Kwacha</option>
         </select>
 
-        <select id="to-currency">
+        <select class="input" id="to-currency">
           <option>select currency</option>
           <option value="AFN">AFN - Afghan Afghani</option>
           <option value="ALL">ALL - Albanian Lek</option>
@@ -359,6 +359,10 @@
           </div>
         </div>
       </form>
+      <div id="from-countries-display">
+      </div>
+      <div id="to-countries-display">
+      </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
