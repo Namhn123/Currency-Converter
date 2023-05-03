@@ -53,33 +53,31 @@ document.querySelector("#countryDisplay").addEventListener("submit", (event) => 
   event.preventDefault();
   var fromCountryIndex = $("#from-countries").val();
   var toCountryIndex = $("#to-countries").val();
-  var fromCountryData = fromCountry[fromCountryIndex];
-  var toCountryData = toCountry[toCountryIndex];
-
-
-  var img = $('<img />', {src: fromCountryData.flags.png, alt: fromCountryData.flags.alt});
-  var div1 = $('<div>');
-  div1.text(`Country: ${fromCountryData.name.official}`);
-  var div2 = $('<div>');
-  div2.text(`Population: ${fromCountryData.population}`);
-  var div3 = $('<div>');
-  div3.text(`Capital: ${fromCountryData.capital[0]}`);
-  var div7 = $('<div>');
-  div7.text(`Latitude, Longitude: ${fromCountryData.latlng[0]}, ${fromCountryData.latlng[1]}`);
-
-  $("#from-countries-display").append(img, div1,div2,div3, div7);
-
-  console.log(toCountryData);
-  var img2 = $('<img />', {src: toCountryData.flags.png, alt: toCountryData.flags.alt});
-  var div4 = $('<div>');
-  div4.text(`Country: ${toCountryData.name.official}`);
-  var div5 = $('<div>');
-  div5.text(`Population: ${toCountryData.population}`);
-  var div6 = $('<div>');
-  div6.text(`Capital: ${toCountryData.capital[0]}`);
-  var div8 = $('<div>');
-  div8.text(`Latitude, Longitude: ${toCountryData.latlng[0]}, ${toCountryData.latlng[1]}`);
-
-  $("#to-countries-display").append(img2, div4,div5,div6,div8);
-
+  console.log("hi");
+  displayCountry(fromCountry[fromCountryIndex], true);
+  displayCountry(toCountry[toCountryIndex])
 });
+
+function displayCountry(countryData, isFrom) {
+  if(isFrom) {
+    $("#from-countries-display").empty();
+  } else {
+    $("#to-countries-display").empty();
+  }
+
+  var img = $('<img />', {src: countryData.flags.png, alt: countryData.flags.alt});
+  var div1 = $('<div>');
+  div1.text(`Country: ${countryData.name.official}`);
+  var div2 = $('<div>');
+  div2.text(`Population: ${countryData.population}`);
+  var div3 = $('<div>');
+  div3.text(`Capital: ${countryData.capital[0]}`);
+  var div4 = $('<div>');
+  div4.text(`Latitude, Longitude: ${countryData.latlng[0]}, ${countryData.latlng[1]}`);
+
+  if(isFrom) {
+    $("#from-countries-display").append(img, div1, div2, div3, div4);
+  } else {
+    $("#to-countries-display").append(img, div1, div2, div3, div4);
+  }
+}
