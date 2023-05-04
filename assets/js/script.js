@@ -2,6 +2,7 @@
 const currencyCodeInput = document.getElementById("from-currency");
 const amountInput = document.getElementById("amount");
 const conversionCodeInput = document.getElementById("to-currency");
+const resultElement = document.getElementById("result");
 var fromCountry = {};
 var toCountry = {};
 
@@ -10,6 +11,14 @@ var toCountry = {};
 document.querySelector("form").addEventListener("submit", (event) => {
   // Prevent the default form submission behavior
   event.preventDefault();
+
+  if (currencyCodeInput.value == "000" || conversionCodeInput.value == "000" || amountInput.value == "") {
+    resultElement.innerText = "Please select a country and amount";
+    $("#countryDisplayChoices").css("visibility", "hidden");//makes form visible
+    $("#from-countries-display").empty();
+    $("#to-countries-display").empty();
+    return;
+  }
 
   // Get the input field values
   const currencyCode = currencyCodeInput.value.toLowerCase();
@@ -26,7 +35,6 @@ document.querySelector("form").addEventListener("submit", (event) => {
       //takes amount and multiplies it by the data from api to get desired numerical output
       const convertedAmount = amount * data[conversionCode];
       //displays output in the html
-      const resultElement = document.getElementById("result");
       resultElement.innerText = `Result: ${amount} ${currencyCode} = ${formatFloat(convertedAmount)} ${conversionCode}`;
     
       getCountryData(currencyCode, true);
