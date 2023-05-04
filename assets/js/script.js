@@ -20,16 +20,20 @@ document.querySelector("form").addEventListener("submit", (event) => {
   fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currencyCode}/${conversionCode}.json`)
     .then((response) => response.json())
     .then((data) => {
+      $("#from-countries-display").empty();
+      $("#to-countries-display").empty();
       //takes amount and multiplies it by the data from api to get desired numerical output
       const convertedAmount = amount * data[conversionCode];
       //displays output in the html
       const resultElement = document.getElementById("result");
-      resultElement.innerText = `${amount} ${currencyCode} = ${convertedAmount} ${conversionCode}`;
+      resultElement.innerText = `Result: ${amount} ${currencyCode} = ${formatNumber(convertedAmount)} ${conversionCode}`;
       //gets the country data of the first currency
       fetch(`https://restcountries.com/v3.1/currency/${currencyCode}?fields=name,capital,currencies,flags,population,latlng`)
         .then((response) => response.json())
         .then((data) => {
           fromCountry = data;
+          $("#fromCountryLabel").text(`Countries that use ${currencyCode}:`);
+          $("#from-countries").empty();
           for(var i=0; i<data.length; i++) {//if there are more than 1 country associated with the currency, display all in dropdown list
             $("#from-countries").append($('<option></option>').val(i).html(fromCountry[i].name.common));
           }
@@ -37,10 +41,12 @@ document.querySelector("form").addEventListener("submit", (event) => {
           .then((response) => response.json())
           .then((data) => {
             toCountry = data;
+            $("#toCountryLabel").text(`Countries that use ${conversionCode}:`);
+            $("#to-countries").empty();
             for(var i=0; i<data.length; i++) {
               $("#to-countries").append($('<option></option>').val(i).html(toCountry[i].name.common));
             }
-            $("#countriesDisplay").css("visibility", "visible");//makes form visible
+            $("#countryDisplayChoices").css("visibility", "visible");//makes form visible
           })
         })
     })
@@ -49,7 +55,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
     });
 });
 
-document.querySelector("#countryDisplay").addEventListener("submit", (event) => {
+document.querySelector("#countryDisplayChoices").addEventListener("submit", (event) => {
   event.preventDefault();
   var fromCountryIndex = $("#from-countries").val();
   var toCountryIndex = $("#to-countries").val();
@@ -79,5 +85,20 @@ function displayCountry(countryData, isFrom) {
     $("#from-countries-display").append(img, div1, div2, div3, div4);
   } else {
     $("#to-countries-display").append(img, div1, div2, div3, div4);
+  }
+}
+
+function formatNumber(number) {
+  // Convert the number to a string
+  var str = number.toString();
+
+  if(str.includes('.')) {
+    var nonZeroIndex = str.indexOf('.')+1;
+    while ((str.charAt(nonZeroIndex) === '0')){
+      nonZeroIndex++;
+    }
+    return (parseFloat(str.substring(0,nonZeroIndex+2)));
+  } else {
+    return (parseFloat(str));
   }
 }
