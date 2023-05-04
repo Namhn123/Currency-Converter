@@ -2,7 +2,7 @@
 
 ## Collaborators
 Nam Nguyen
-Ramon de Oliviera Silveira
+Ramon Oliveira Da Silveira
 Alex Minyakov
 Cassidy Thornsberry
 
