@@ -26,7 +26,7 @@ document.querySelector("form").addEventListener("submit", (event) => {
       const convertedAmount = amount * data[conversionCode];
       //displays output in the html
       const resultElement = document.getElementById("result");
-      resultElement.innerText = `Result: ${amount} ${currencyCode} = ${formatNumber(convertedAmount)} ${conversionCode}`;
+      resultElement.innerText = `Result: ${amount} ${currencyCode} = ${formatFloat(convertedAmount)} ${conversionCode}`;
       //gets the country data of the first currency
       fetch(`https://restcountries.com/v3.1/currency/${currencyCode}?fields=name,capital,currencies,flags,population,latlng`)
         .then((response) => response.json())
@@ -75,11 +75,11 @@ function displayCountry(countryData, isFrom) {
   var div1 = $('<div>');
   div1.text(`Country: ${countryData.name.official}`);
   var div2 = $('<div>');
-  div2.text(`Population: ${countryData.population}`);
+  div2.text(`Population: ${countryData.population.toLocaleString("en-US")} people`);
   var div3 = $('<div>');
   div3.text(`Capital: ${countryData.capital[0]}`);
   var div4 = $('<div>');
-  div4.text(`Latitude, Longitude: ${countryData.latlng[0]}, ${countryData.latlng[1]}`);
+  div4.text(`Latitude, Longitude: ${formatFloat(countryData.latlng[0])}, ${formatFloat(countryData.latlng[1])}`);
 
   if(isFrom) {
     $("#from-countries-display").append(img, div1, div2, div3, div4);
@@ -88,17 +88,20 @@ function displayCountry(countryData, isFrom) {
   }
 }
 
-function formatNumber(number) {
+function formatFloat(number) {
   // Convert the number to a string
   var str = number.toString();
 
-  if(str.includes('.')) {
+  if(str.charAt(0) === '0' && str !== '0') {
     var nonZeroIndex = str.indexOf('.')+1;
     while ((str.charAt(nonZeroIndex) === '0')){
       nonZeroIndex++;
     }
     return (parseFloat(str.substring(0,nonZeroIndex+2)));
-  } else {
+  } else if (str.includes('.')) {
+    return (parseFloat(str).toFixed(2));
+  }
+  else {
     return (parseFloat(str));
   }
 }
