@@ -1,0 +1,38 @@
+body{
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+background: hsl(290, 47%, 51%);
+}
+form p{
+}
+form input{
+height: 40px;
+width: 300px;
+padding: 0 15px;
+border: 1px solid #c8c2c2;
+}
+form input:focus{
+padding: 0 14px;
+border: 2px solid #400dda;
+}
+header{ 
+    font-size: 25px;
+    text-align: center;
+    margin: 40px;
+}
+label{
+    font-size: 18px;
+    font-style: 
+}
+convertCurrency{
+    background: #1e0762;
+}
+
+form{
+    font-size: 17px;
+}
+label{ 
+    font-family: poppins;
+}
