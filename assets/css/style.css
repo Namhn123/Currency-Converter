@@ -1,3 +1,7 @@
-#countryDisplay {
-    /* visibility: hidden; */
+#countryDisplayChoices {
+    visibility: hidden;
+}
+
+p {
+    text-align: center;
 }

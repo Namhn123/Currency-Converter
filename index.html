@@ -31,7 +31,6 @@
             <option value="BHD">BHD - Bahraini Dinar</option>
             <option value="BDT">BDT - Bangladeshi Taka</option>
             <option value="BBD">BBD - Barbadian Dollar</option>
-            <option value="BYR">BYR - Belarusian Ruble</option>
             <option value="BZD">BZD - Belize Dollar</option>
             <option value="BMD">BMD - Bermudan Dollar</option>
             <option value="BTN">BTN - Bhutanese Ngultrum</option>
@@ -191,7 +190,6 @@
             <option value="BHD">BHD - Bahraini Dinar</option>
             <option value="BDT">BDT - Bangladeshi Taka</option>
             <option value="BBD">BBD - Barbadian Dollar</option>
-            <option value="BYR">BYR - Belarusian Ruble</option>
             <option value="BZD">BZD - Belize Dollar</option>
             <option value="BMD">BMD - Bermudan Dollar</option>
             <option value="BTN">BTN - Bhutanese Ngultrum</option>
@@ -356,22 +354,33 @@
       </form>
 
       <div class="result">
-        <p class="subtitle is-5 has-text-weight-semibold mb-2 mt-3">Result: <span id="result"></span></p>
+        <p class="subtitle has-text-weight-semibold mb-2 mt-3 is-size-2"><span id="result"></span></p>
       </div>
-      <form id="countryDisplay">
-        <select id="from-countries">
-        </select>
-        <select id="to-countries">
-        </select>
+      <form id="countryDisplayChoices">
+        <p class="is-size-3 has-text-weight-semibold m-4">Choose which countries to display</p>
+        <div class="columns">
+          <div class="column">
+            <label id="fromCountryLabel" class="label" for="from-countries"></label>
+            <select class="column input has-background-white-ter mt-2 mr-2 p-2" id="from-countries">
+            </select>
+          </div>
+          <div class="column">
+            <label id="toCountryLabel" class="label ml-2" for="to-countries"></label>
+            <select class="column input has-background-white-ter mt-2 ml-2 p-2" id="to-countries">
+            </select>
+          </div>
+        </div>
         <div class="field">
-          <div class="control">
-            <button class="button is-info is-outlined mb-2 mt-3" type="submit">Display Countries</button>
+          <div class="control buttons is-centered">
+            <button class="button is-info is-outlined mb-5 mt-3" type="submit">Display Countries</button>
           </div>
         </div>
       </form>
-      <div id="from-countries-display">
-      </div>
-      <div id="to-countries-display">
+      <div class="columns">
+        <div id="from-countries-display" class="column">
+        </div>
+        <div id="to-countries-display" class="column">
+        </div>
       </div>
     </main>
 
