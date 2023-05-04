@@ -5,3 +5,20 @@
 p {
     text-align: center;
 }
+.footer {
+    padding: 25%;
+    padding-top: 10px;
+    padding-bottom: 10x;
+    background: rgb(235, 231, 231);
+    position: flex;
+    bottom: 10;
+    height: 60px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+}
+body {
+    background-image: linear-gradient(rgba(250,250,250,0.3),
+    rgba(250,250,250,0.6)), url("https://static.vecteezy.com/system/resources/previews/001/922/309/non_2x/coin-currency-symbol-icon-set-vector.jpg");
+    background-size: cover;
+}
