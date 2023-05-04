@@ -6,15 +6,9 @@ p {
     text-align: center;
 }
 .footer {
-    padding: 25%;
     padding-top: 10px;
-    padding-bottom: 10x;
-    background: rgb(235, 231, 231);
-    position: flex;
-    bottom: 10;
-    height: 60px;
+    padding-bottom: 10px;
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 14px;
 }
 body {
